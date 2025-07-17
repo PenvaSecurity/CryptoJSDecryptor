@@ -1,6 +1,5 @@
 # CryptoJSDecryptor
-A simple BurpSuite extension to help in CryptoJS encryption/decryption.
-
+A simple BurpSuite extension to help in encryption/decryption of CryptoJS, the most used crypto library in JS.
 <img src="https://i.postimg.cc/Gt6ktD9Y/cryptojsdecryptor.png">
 
 ### About
@@ -11,6 +10,7 @@ A simple BurpSuite extension to help in CryptoJS encryption/decryption.
 - You will be required to give AES Passphrase in user interface of the extension tab. AES Passphrase can be obtained by reversing the application.
 - One of the three options can also be selected from the Configuration Settings which will tell the position to extension where to perform encryption/decryption in the request.
 - When you have inserted the passphrase and selected desired options, you can simply click on `Save Configuration` button.
+- <img src="https://i.postimg.cc/Gt6ktD9Y/cryptojsdecryptor.png">
 
 ### Setting up
 ```
