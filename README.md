@@ -19,3 +19,18 @@ cd CryptoJSDecryptor
 gradle clean build
 ```
 You will get a `CryptoJSDecryptor.jar` file in `build\libs` directory which you can then load into BurpSuite.
+
+### Important Note
+This extension currently works on this specific implementation of CryptoJS encryption/decryption where you pass only passphrase and data to encrypt/decrypt.
+```
+CryptoJS.AES.encrypt(data, passphrase);
+CryptoJS.AES.decrypt(data, passphrase);
+```
+When we perform encryption in CryptoJS this way, we will get a base64 encoded cipher with a `U2FsdGVkX1` prefix in starting which decodes to `Salted__` string.
+In simple words, when using a passphrase, CryptoJS structures the output like this:
+```
+[8 bytes: "Salted__"] + [8 bytes: salt] + [ciphertext]
+```
+Then, this entire binary blob is Base64-encoded to get a nice string.
+
+So, if you ever see a string-based passphrase encryption/decryption implementation (using just a string, not a key/IV) in CryptoJS, then this extension can help greatly.
