@@ -12,7 +12,7 @@ A Burp Suite extension for seamless encryption and decryption with CryptoJS — 
 
 ### Do You Need It ?
 You need this extension if:
-- You have stumbled upon base64 encoded string with `U2FsdGVkX1` prefix in starting, because it means it is encrypted with CryptoJS.
+- You have stumbled upon base64 encoded string with `U2FsdGVkX1` prefix in starting, because it means it is encrypted with CryptoJS. This `U2FsdGVkX1` prefix decodes to `Salted__` string which CryptoJS uses in starting.
 
 What are the prerequisites?
 - You only need a passphrase which is being used for encryption/decryption. You can find this passphrase by reverse engineering the application.
