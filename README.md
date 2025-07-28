@@ -1,5 +1,5 @@
 # CryptoJSDecryptor
-A Burp Suite extension for seamless encryption and decryption with CryptoJS — the most widely used JavaScript crypto library.
+A Burp Suite extension for seamless encryption and decryption with CryptoJS - the most widely used JavaScript crypto library.
 <img src="https://i.postimg.cc/Gt6ktD9Y/cryptojsdecryptor.png">
 
 ---
