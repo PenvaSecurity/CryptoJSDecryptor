@@ -5,8 +5,8 @@ A Burp Suite extension for seamless encryption and decryption with CryptoJS — 
 ---
 
 ### About
-- CryptoJSDecryptor is built with Montoya API and uses handlers like HttpHandler and ProxyRequestHandler for encrypting/decrypting of requests and responses.
-- Note: *This extension does not decrypt response in Proxy tool right now but we are working on supporting this feature as well.*
+- CryptoJSDecryptor is built using the Montoya API and leverages handlers like `HttpHandler` and `ProxyRequestHandler` to perform encryption and decryption of HTTP requests and responses.
+- Note: *Decryption of responses in the Proxy tool is not supported yet, but support for this feature is currently in development.*
 
 ---
 
@@ -21,19 +21,19 @@ You will get a `CryptoJSDecryptor.jar` file in `build\libs` directory which you 
 ---
 
 ### Important Note
-This extension currently works on this specific implementation of CryptoJS encryption/decryption where you pass only passphrase and data to encrypt/decrypt.
+This extension currently supports a specific usage pattern of CryptoJS encryption/decryption - where only a passphrase and data are provided:
 ```
 CryptoJS.AES.encrypt(data, passphrase);
 CryptoJS.AES.decrypt(data, passphrase);
 ```
 When we perform encryption in CryptoJS this way, we will get a base64 encoded cipher with a `U2FsdGVkX1` prefix in starting which decodes to `Salted__` string.
-In simple words, when using a passphrase, CryptoJS structures the output like this:
+In simple words, when using a passphrase, the encrypted output follows this structure:
 ```
 [8 bytes: "Salted__"] + [8 bytes: salt] + [ciphertext]
 ```
 Then, this entire binary blob is Base64-encoded to get a nice string.
 
-So, if you ever see a string-based passphrase encryption/decryption implementation (using just a string, not a key/IV) in CryptoJS, then this extension can help greatly.
+So, if you encounter a CryptoJS implementation that uses a string-based passphrase (without explicitly supplying a key and IV), this extension can be especially useful for decoding and inspecting such traffic.
 
 ---
 
