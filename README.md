@@ -10,6 +10,14 @@ A Burp Suite extension for seamless encryption and decryption with CryptoJS — 
 
 ---
 
+### Do You Need It ?
+You need this extension if:
+- You have stumbled upon base64 encoded string with `U2FsdGVkX1` prefix in starting, because it means it is encrypted with CryptoJS.
+
+What are the prerequisites?
+- You only need a passphrase which is being used for encryption/decryption. You can find this passphrase by reverse engineering the application.
+---
+
 ### Setting up
 ```
 git clone https://github.com/PenvaSecurity/CryptoJSDecryptor
@@ -17,6 +25,14 @@ cd CryptoJSDecryptor
 gradle clean build
 ```
 You will get a `CryptoJSDecryptor.jar` file in `build\libs` directory which you can then load into BurpSuite.
+
+---
+
+### How to use
+- You will be required to give AES Passphrase in user interface of the extension tab. AES Passphrase can be obtained by reversing the application.
+- One of the three options can also be selected from the Configuration Settings which will tell the position to extension where to perform encryption/decryption in the request.
+- When you have inserted the passphrase and selected desired options, you can simply click on `Save Configuration` button.
+<img src="https://i.postimg.cc/vmGbvX03/config-saved.png">
 
 ---
 
@@ -34,12 +50,3 @@ In simple words, when using a passphrase, the encrypted output follows this stru
 Then, this entire binary blob is Base64-encoded to get a nice string.
 
 So, if you encounter a CryptoJS implementation that uses a string-based passphrase (without explicitly supplying a key and IV), this extension can be especially useful for decoding and inspecting such traffic.
-
----
-
-### How to use
-- You will be required to give AES Passphrase in user interface of the extension tab. AES Passphrase can be obtained by reversing the application.
-- One of the three options can also be selected from the Configuration Settings which will tell the position to extension where to perform encryption/decryption in the request.
-- When you have inserted the passphrase and selected desired options, you can simply click on `Save Configuration` button.
-<img src="https://i.postimg.cc/vmGbvX03/config-saved.png">
-
