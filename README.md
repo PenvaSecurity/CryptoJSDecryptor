@@ -2,6 +2,10 @@
 A Burp Suite extension for seamless encryption and decryption with CryptoJS - the most widely used JavaScript crypto library.
 <img src="https://i.postimg.cc/Gt6ktD9Y/cryptojsdecryptor.png">
 
+### Tested on
+- Burpsuite 2023.1, 2025.8.2
+- Windows 10
+
 ---
 
 ### About
