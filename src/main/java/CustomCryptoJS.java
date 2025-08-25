@@ -1,3 +1,5 @@
+import burp.api.montoya.MontoyaApi;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -74,7 +76,7 @@ public class CustomCryptoJS {
         }
     }
 
-    public static Component tab(){
+    public static Component tab(MontoyaApi api){
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -90,15 +92,6 @@ public class CustomCryptoJS {
         panel.add(inputField);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        JButton saveAesButton = new JButton("Save Passphrase");
-        saveAesButton.setAlignmentX(Component.LEFT_ALIGNMENT);
-        saveAesButton.addActionListener(e -> {
-            aes_passphrase = inputField.getText();
-            JOptionPane.showMessageDialog(panel, "Passphrase Saved: " + aes_passphrase);
-        });
-        panel.add(saveAesButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Extra space
-
 // ===== SECTION 2: CONFIGURATION =====
         JLabel configTitle = new JLabel("Configuration Settings");
         configTitle.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
@@ -106,56 +99,65 @@ public class CustomCryptoJS {
         panel.add(configTitle);
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
-// Config Rows
+// Config Rows - Fixed to eliminate gaps
         JPanel row1 = new JPanel();
         JCheckBox checkBox1 = new JCheckBox();
         row1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
         row1.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // Fix: Set maximum height to prevent vertical expansion
+        row1.setMaximumSize(new Dimension(Integer.MAX_VALUE, row1.getPreferredSize().height));
 
         row1.add(new JLabel("URL Parameter:"));
         row1.add(checkBox1);
         row1.add(new JLabel("Enter url parameter name:"));
 
         JTextField textField1 = new JTextField(10);
-        textField1.setMaximumSize(new Dimension(200, 15));
         row1.add(textField1);
         panel.add(row1);
-
-
+        // Add small gap between config rows
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
         JPanel row2 = new JPanel();
         JCheckBox checkBox2 = new JCheckBox();
         row2.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
         row2.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // Fix: Set maximum height to prevent vertical expansion
+        row2.setMaximumSize(new Dimension(Integer.MAX_VALUE, row2.getPreferredSize().height));
 
         row2.add(new JLabel("Body Parameter:"));
         row2.add(checkBox2);
         row2.add(new JLabel("Enter body parameter name:"));
 
         JTextField textField2 = new JTextField(10);
-        textField2.setMaximumSize(new Dimension(200, 15));
         row2.add(textField2);
         panel.add(row2);
+        // Add small gap between config rows
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
         JPanel row3 = new JPanel();
         JCheckBox checkBox3 = new JCheckBox();
         row3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
         row3.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // Fix: Set maximum height to prevent vertical expansion
+        row3.setMaximumSize(new Dimension(Integer.MAX_VALUE, row3.getPreferredSize().height));
 
         row3.add(new JLabel("Header:"));
         row3.add(checkBox3);
         row3.add(new JLabel("Enter header name:"));
 
         JTextField textField3 = new JTextField(10);
-        textField3.setMaximumSize(new Dimension(200, 15));
         row3.add(textField3);
         panel.add(row3);
+
+        // Add small spacing before save button
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
 // ===== SECOND SAVE BUTTON =====
         JButton saveConfigButton = new JButton("Save Configuration");
         saveConfigButton.setAlignmentX(Component.LEFT_ALIGNMENT);
         saveConfigButton.addActionListener(e -> {
             // Add your configuration save logic here
+            aes_passphrase = inputField.getText();
             checkbox1_selected = checkBox1.isSelected();
             if (checkbox1_selected){
                 url_parameter = textField1.getText();
@@ -168,9 +170,13 @@ public class CustomCryptoJS {
             if (checkbox3_selected){
                 header = textField3.getText();
             }
-            JOptionPane.showMessageDialog(panel, "Configuration Saved");
+            JOptionPane.showMessageDialog(api.userInterface().swingUtils().suiteFrame(), "Configuration Saved");
         });
         panel.add(saveConfigButton);
+
+        // Add glue to push everything to the top
+        panel.add(Box.createVerticalGlue());
+
         return panel;
     }
 
