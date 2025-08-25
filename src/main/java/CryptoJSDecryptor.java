@@ -128,6 +128,7 @@ public class CryptoJSDecryptor implements HttpHandler, ProxyRequestHandler {
                         return ProxyRequestReceivedAction.continueWith(interceptedRequest);
                     }
                     HttpParameter body_param = HttpParameter.bodyParameter(CustomCryptoJS.body_parameter,decrypted);
+//                    return ProxyRequestReceivedAction.continueWith(interceptedRequest.withUpdatedParameters(body_param));
                     return ProxyRequestReceivedAction.continueWith(interceptedRequest.withUpdatedParameters(body_param));
                 }
                 return ProxyRequestReceivedAction.continueWith(interceptedRequest);
