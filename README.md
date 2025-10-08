@@ -1,6 +1,6 @@
 # CryptoJSDecryptor
 A Burp Suite extension for seamless encryption and decryption with CryptoJS - the most widely used JavaScript crypto library.
-<img src="https://i.postimg.cc/2Sc01BYX/1.png">
+<img src="https://i.postimg.cc/ZnsW-8Z5s/1.png">
 
 ### Tested on
 - Burpsuite versions: 2023.1, 2025.8.2
@@ -36,7 +36,7 @@ You will get a `CryptoJSDecryptor.jar` file in `build\libs` directory which you 
 - You will be required to give AES Passphrase in user interface of the extension tab. AES Passphrase can be obtained by reversing the application.
 - One of the three options can also be selected from the Configuration Settings which will tell the position to extension where to perform encryption/decryption in the request.
 - When you have inserted the passphrase and selected desired options, you can simply click on `Save Configuration` button.
-<img src="https://i.postimg.cc/wxRYgghr/2.png">
+<img src="https://i.postimg.cc/3xYwkd1J/2.png">
 
 ---
 
